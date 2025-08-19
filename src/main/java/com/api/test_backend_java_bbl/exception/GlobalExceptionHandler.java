@@ -21,13 +21,6 @@ public class GlobalExceptionHandler {
                 .body(exception.getMessage());
     }
 
-    @ExceptionHandler(value = { DuplicateUserException.class })
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ResponseEntity<?> handleDuplicateUserException(DuplicateUserException exception) {
-        return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(exception.getMessage());
-    }
-
     @ExceptionHandler(value = { MethodArgumentNotValidException.class })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {

@@ -3,7 +3,6 @@ package com.api.test_backend_java_bbl.model;
 import jakarta.validation.constraints.NotBlank;
 
 public record CreateNewUserRequest(
-         Long id,
          @NotBlank(message = "name is required")
          String name,
 

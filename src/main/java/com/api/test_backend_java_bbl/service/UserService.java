@@ -1,6 +1,5 @@
 package com.api.test_backend_java_bbl.service;
 
-import com.api.test_backend_java_bbl.exception.DuplicateUserException;
 import com.api.test_backend_java_bbl.exception.NotFoundException;
 import com.api.test_backend_java_bbl.model.CreateNewUserRequest;
 import com.api.test_backend_java_bbl.model.UpdateUserDetail;
@@ -9,10 +8,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -42,14 +38,11 @@ public class UserService {
     }
 
     public User createNewUser(CreateNewUserRequest payload) {
-        boolean userExists = userList.stream().anyMatch(user -> user.getId().equals(payload.id()));
+        Long userId = Math.abs(new Random().nextLong());
 
-        if (userExists){
-            throw new DuplicateUserException("User already exists");
-        }
         User newUser = User.builder()
                 .email(payload.email())
-                .id(payload.id())
+                .id(userId)
                 .name(payload.name())
                 .username(payload.username())
                 .phone(payload.phone())
