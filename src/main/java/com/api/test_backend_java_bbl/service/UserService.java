@@ -1,5 +1,6 @@
 package com.api.test_backend_java_bbl.service;
 
+import com.api.test_backend_java_bbl.exception.NotFoundException;
 import com.api.test_backend_java_bbl.model.User;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,11 @@ public class UserService {
 
     public List<User> getListUser(){
         return userList;
+    }
+
+    public User findByUserId(Long userId) {
+        return userList.stream().filter(user -> user.getId().equals(userId))
+                .findFirst()
+                .orElseThrow(() ->new NotFoundException("User not found"));
     }
 }
