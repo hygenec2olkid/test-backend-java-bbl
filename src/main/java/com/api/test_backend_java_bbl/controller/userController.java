@@ -2,15 +2,22 @@ package com.api.test_backend_java_bbl.controller;
 
 import com.api.test_backend_java_bbl.model.CreateNewUserRequest;
 import com.api.test_backend_java_bbl.model.UpdateUserDetail;
+import com.api.test_backend_java_bbl.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
 public class userController {
+    private final UserService userService;
+
+    public userController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping
     public ResponseEntity<?> getListUsers(){
-        return ResponseEntity.ok("get list users");
+        return ResponseEntity.ok(userService.getListUser());
     }
 
     @GetMapping("/{userId}")
