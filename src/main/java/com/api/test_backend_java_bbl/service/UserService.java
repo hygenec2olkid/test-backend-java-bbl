@@ -73,4 +73,12 @@ public class UserService {
 
         return user;
     }
+
+    public void deleteUser(Long userId) {
+        User user = userList.stream().filter(u -> u.getId().equals(userId))
+                .findFirst()
+                .orElseThrow(()-> new NotFoundException("User not found"));
+
+        userList.remove(user);
+    }
 }
