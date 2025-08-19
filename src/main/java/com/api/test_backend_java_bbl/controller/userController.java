@@ -4,6 +4,7 @@ import com.api.test_backend_java_bbl.model.CreateNewUserRequest;
 import com.api.test_backend_java_bbl.model.UpdateUserDetail;
 import com.api.test_backend_java_bbl.model.User;
 import com.api.test_backend_java_bbl.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,13 +31,13 @@ public class userController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createNewUser(@RequestBody CreateNewUserRequest payload){
+    public ResponseEntity<User> createNewUser(@Valid @RequestBody CreateNewUserRequest payload){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createNewUser(payload));
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<?> updateUserDetail(@PathVariable String userId,@RequestBody UpdateUserDetail payload){
-        return ResponseEntity.ok("update user detail");
+    public ResponseEntity<?> updateUserDetail(@Valid @PathVariable Long userId,@RequestBody UpdateUserDetail payload){
+        return ResponseEntity.ok(userService.updateUser(userId,payload));
     }
 
     @DeleteMapping("/{userId}")
