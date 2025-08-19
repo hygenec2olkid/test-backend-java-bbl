@@ -16,4 +16,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(exception.getMessage());
     }
+
+    @ExceptionHandler(value = { DuplicateUserException.class })
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<?> handleDuplicateUserException(DuplicateUserException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(exception.getMessage());
+    }
 }

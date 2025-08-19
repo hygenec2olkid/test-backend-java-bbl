@@ -4,6 +4,7 @@ import com.api.test_backend_java_bbl.model.CreateNewUserRequest;
 import com.api.test_backend_java_bbl.model.UpdateUserDetail;
 import com.api.test_backend_java_bbl.model.User;
 import com.api.test_backend_java_bbl.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,13 +25,13 @@ public class userController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<?> getUserDetail(@PathVariable Long userId){
+    public ResponseEntity<User> getUserDetail(@PathVariable Long userId){
         return ResponseEntity.ok(userService.findByUserId(userId));
     }
 
     @PostMapping
-    public ResponseEntity<?> createNewUser(@RequestBody CreateNewUserRequest payload){
-        return ResponseEntity.ok("create new user");
+    public ResponseEntity<User> createNewUser(@RequestBody CreateNewUserRequest payload){
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createNewUser(payload));
     }
 
     @PutMapping("/{userId}")
