@@ -1,6 +1,5 @@
 package com.api.test_backend_java_bbl.controller;
 
-import com.api.test_backend_java_bbl.model.CreateNewUserRequest;
 import com.api.test_backend_java_bbl.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
