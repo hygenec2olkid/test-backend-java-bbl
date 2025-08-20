@@ -13,10 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-public class userController {
+public class UserController {
     private final UserService userService;
 
-    public userController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -36,7 +36,7 @@ public class userController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<?> updateUserDetail(@Valid @PathVariable Long userId,@RequestBody UpdateUserDetail payload){
+    public ResponseEntity<?> updateUserDetail(@PathVariable Long userId, @Valid @RequestBody UpdateUserDetail payload){
         return ResponseEntity.ok(userService.updateUser(userId,payload));
     }
 
