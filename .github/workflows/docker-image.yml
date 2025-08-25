@@ -3,9 +3,9 @@ name: Build Artifact & Push Image
 on: 
   push: 
     branches: ["main"]
-  pull-request:
+  pull_request:
 
-job: 
+jobs: 
   build:
     run-on: ubuntu-lastest
 
