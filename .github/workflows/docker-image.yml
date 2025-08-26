@@ -61,5 +61,5 @@ jobs:
 
       - name: Trigger Argo CD sync image
         run: |
-          argocd app sync my-app
-          argocd app wait my-app
+          argocd app sync test-backend
+          argocd app wait test-backend
