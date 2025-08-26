@@ -69,7 +69,7 @@ class UserServiceTest {
 
         // assert
         assertNotNull(newUser);
-        assertEquals("namee",newUser.getName());
+        assertEquals("name",newUser.getName());
         assertEquals("username",newUser.getUsername());
         assertEquals("email",newUser.getEmail());
         assertEquals("phone",newUser.getPhone());
