@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-backend
+  labels:
+    app: test-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-backend
+  template:
+    metadata:
+      labels:
+        app: test-backend
+    spec:
+      containers:
+        - name: test-backend
+          image: ghcr.io/hygenec2olkid/test_backend_java_bbl:latest
+          ports:
+            - containerPort: 8080
