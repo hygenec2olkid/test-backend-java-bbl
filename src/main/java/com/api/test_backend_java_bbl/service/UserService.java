@@ -15,8 +15,8 @@ public class UserService {
     private List<User> userList;
     private final RestTemplate restTemplate;
 
-    public UserService() {
-        this.restTemplate = new RestTemplate();
+    public UserService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
     @PostConstruct

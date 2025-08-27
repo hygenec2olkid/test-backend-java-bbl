@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -26,7 +27,17 @@ class UserServiceTest {
 
     @BeforeEach
     void setUp(){
+        when(restTemplate.getForObject("https://jsonplaceholder.typicode.com/users",User[].class))
+                .thenReturn(getMockUser());
+
         userService.loadUsers();
+    }
+
+    private User[] getMockUser(){
+        return new User[]{
+                User.builder().id(1L).name("genie").phone("1150").email("Sincere@april.biz").website("hildegard.org").username("Bret").build(),
+                User.builder().id(2L).name("johnie").phone("1669").email("mail@april.biz").website("thailand.org").username("johnny-walker").build()
+        };
     }
 
     @Test
@@ -35,7 +46,7 @@ class UserServiceTest {
 
         // assert
         assertNotNull(userList);
-        assertEquals(10,userList.size());
+        assertEquals(2,userList.size());
     }
 
     @Test
@@ -45,10 +56,10 @@ class UserServiceTest {
 
         // assert
         assertNotNull(user);
-        assertEquals("Leanne Graham",user.getName());
+        assertEquals("genie",user.getName());
         assertEquals("Bret",user.getUsername());
         assertEquals("Sincere@april.biz",user.getEmail());
-        assertEquals("1-770-736-8031 x56442",user.getPhone());
+        assertEquals("1150",user.getPhone());
         assertEquals("hildegard.org",user.getWebsite());
     }
 
